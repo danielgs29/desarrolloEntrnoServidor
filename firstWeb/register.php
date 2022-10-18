@@ -2,6 +2,57 @@
 // Start the session
 session_start();
 ?>
+
+<?php
+// define variables and set to empty values
+ $email = $lname = $fname = $password = $job= "";
+ $emailErr = $lnameErr = $fnameErr = $passwordErr = $jobErr= "";
+ 
+ if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (empty($_POST["fname"])) {
+    $fnameErr = "Name is required";
+  } else {
+    $fname = test_input($_POST["fname"]);
+  }
+
+  if (empty($_POST["email"])) {
+    $emailErr = "Email is required";
+  } else {
+    $email = test_input($_POST["email"]);
+  }
+
+  if (empty($_POST["lname"])) {
+    $lnameErr = "";
+  } else {
+    $lname = test_input($_POST["lname"]);
+  }
+
+  if (empty($_POST["password"])) {
+    $passwordErr = "";
+  } else {
+    $password = test_input($_POST["password"]);
+  }
+
+  if (empty($_POST["job"])) {
+    $jobErr = "Gender is required";
+  } else {
+    $job = test_input($_POST["job"]);
+  }
+}
+?>
+
+<?php
+
+function test_input($data) {
+  $data = trim($data);
+  $data = stripslashes($data);
+  $data = htmlspecialchars($data);
+  return $data;
+}
+?>
+
+
+
 <!DOCTYPE html>
 
 <html>
@@ -10,7 +61,7 @@ session_start();
         <title>Register page</title>
          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="css/register.css">
-    </head>
+
     <body>
         
           <nav class="navbar navbar-expand-sm bg-light navbar-light">
@@ -37,7 +88,7 @@ session_start();
         
          <div class="center">
          <h1>Register</h1>
-         <form action="profile.php" method="post">
+         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
         <div class="txt_field">
           <input type="text" id="fname" name="fname" required>
           <span></span>
@@ -47,6 +98,11 @@ session_start();
           <input type="text" id="lname" name="lname" required>
           <span></span>
           <label for="lname">Last name</label>
+        </div>
+             <div class="txt_field">
+          <input type="password" id="password" name="password" required>
+          <span></span>
+          <label for="password">Password</label>
         </div>
           <div class="txt_field">
           <input type="text" id="job" name="job" required>

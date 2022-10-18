@@ -1,2 +1,0 @@
-# desarrolloEntrnoServidor
- repositorio para PHP

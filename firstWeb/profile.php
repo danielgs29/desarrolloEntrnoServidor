@@ -10,6 +10,8 @@ session_start();
            $lastname=$_POST['lname'];
            $job=$_POST['job'];
            $email=$_POST['email'];
+           $password=$_POST['password'];
+           
            setcookie('name', $name, time() + (86400 * 30), "/");
            $_COOKIE['name'] = $name;
            setcookie('lastname', $lastname, time() + (86400 * 30), "/");
@@ -18,11 +20,20 @@ session_start();
             $_COOKIE['job'] = $job;
            setcookie('email', $email, time() + (86400 * 30), "/");
             $_COOKIE['email'] = $email;
+            setcookie('password', $password, time() + (86400 * 30), "/");
+            $_COOKIE['password'] = $password;
        }
       // else{
         //   header("location: register.php");
       // }
        // ?>
+<?php
+       require_once 'connect.php';
+            $sql="INSERT INTO users(name,firstname,job,email,password) Values('$name','$lastname','$job','$email','$password')";
+     //  echo $sql;
+       $result = mysqli_query($conn, $sql);
+
+  ?>
 
 
 <html>

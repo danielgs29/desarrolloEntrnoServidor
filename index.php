@@ -1,35 +1,17 @@
-<?php
-// Start the session
-session_start();
-?>
 <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	
+<?php
+echo "<h1>My first home page in php<h1>";
+echo "Welcome"
+?>
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title>My first project</title>
-    </head>
-    <body>
-        
-        <h1>Your teacher's first project</h1>
-        
-        
-        <a href="register.php">Register</a>
-
-        <?php
-        $cookie_name = "user";
-     
-if(!isset($_COOKIE[$cookie_name])) {
-    echo "Username is not set!";
-} else {
-    echo "Username is set!<br>";
-    echo "Welcome, " . $_COOKIE[$cookie_name];
-}  
-
-if(isset($_SESSION['session_email'])) {
-    echo "<br>Your e-mail is: ".$_SESSION['session_email'];
-}
-//$_SESSION["session_email"] = "";        
-        ?>
-    </body>
+</body>
 </html>
